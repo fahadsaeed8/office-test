@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import Button from "@/components/common/Button";
 import SelectDropdown from "@/components/common/SelectDropDown/SelectDropDown";
 import Toggle from "@/components/common/ToggleButton/ToggleButton";
@@ -58,7 +58,7 @@ const Page = () => {
     { value: "jennifer", label: "Jennifer" },
   ];
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
