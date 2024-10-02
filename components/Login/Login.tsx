@@ -122,7 +122,7 @@ const Login = () => {
       </form>
       <div className="flex justify-center mt-auto mb-0">
         <Image
-          src={"/images/_loginwall.png"}
+          src={"/images/_loginWallpaper.png"}
           height={1200}
           width={1200}
           alt=""
