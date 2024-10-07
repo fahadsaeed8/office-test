@@ -25,6 +25,28 @@ const Page = () => {
     router.push("/login");
   };
 
+  // const [formData, setFormData] = useState({ role: "", user: "" });
+  const [assignedData, setAssignedData] = useState<
+    { role: string; user: string }[]
+  >([]);
+
+  const handleChange = (
+    e: ChangeEvent<HTMLSelectElement | HTMLInputElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleAssign = () => {
+    if (formData.role && formData.user) {
+      setAssignedData((prevData) => [
+        ...prevData,
+        { role: formData.role, user: formData.user },
+      ]);
+      setFormData((prevData) => ({ ...prevData, role: "", user: "" }));
+    }
+  };
+
   const priorityOptions = [
     { value: "high", label: "High" },
     { value: "medium", label: "Medium" },
@@ -58,14 +80,7 @@ const Page = () => {
     { value: "jennifer", label: "Jennifer" },
   ];
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
 
-  const handleAssign = () => {
-    console.log(formData);
-  };
 
   return (
     <>
@@ -160,9 +175,9 @@ const Page = () => {
             </span>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 mb-[40px]">
             <label className="text-black font-medium z-30 bg-white w-fit ml-3">
-              Title
+          Repair Date
             </label>
             <input
               type="text"
@@ -170,7 +185,7 @@ const Page = () => {
               className="p-3 border mt-[-20px] border-gray-300 rounded-lg w-[226.12px] focus:outline-none focus:ring-2 focus:ring-gray-400"
             />
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 mb-[40px]">
             <label className="text-black font-medium z-30 bg-white w-fit ml-3">
               Time Estimate Hours
             </label>
@@ -183,7 +198,7 @@ const Page = () => {
               />
             </div>
           </div>
-          <div className="ml-5">
+          <div className="ml-5 mb-[40px]">
             <Toggle label="Hub" />
           </div>
         </div>
@@ -202,6 +217,7 @@ const Page = () => {
                   options={roleOptions}
                   width="483.88px"
                   name="role"
+                  value={formData.role}
                   onChange={handleChange}
                 />
               </div>
@@ -216,6 +232,7 @@ const Page = () => {
                   options={userOptions}
                   width="483.88px"
                   name="user"
+                  value={formData.user}
                   onChange={handleChange}
                 />
               </div>
@@ -226,9 +243,10 @@ const Page = () => {
               </Button>
             </div>
           </div>
-        </div>
-        <div className="mt-10">
-          <Table />
+
+          <div className="mt-10">
+            <Table assignedData={assignedData} />
+          </div>
         </div>
       </div>
     </>

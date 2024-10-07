@@ -9,7 +9,7 @@ interface FormData {
   username: string;
   password: string;
   LoggedIn: boolean;
-}
+}  
 const Login = () => {
   const {
     register,

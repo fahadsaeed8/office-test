@@ -1,32 +1,36 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 
-const tableData = [
-  {
-    id: 1,
-    name: "Joe Abraham",
-    email: "Joe.Abraham@joeabraham.com",
-    phone: "123-456-7890",
-    role: "Admin User",
-  },
-  {
-    id: 2,
-    name: "Joe Abraham",
-    email: "Joe.Abraham@joeabraham.com",
-    phone: "123-456-7890",
-    role: "Admin User",
-  },
-];
+// const tableData = [
+//   {
+//     id: 1,
+//     name: "Joe Abraham",
+//     email: "Joe.Abraham@joeabraham.com",
+//     phone: "123-456-7890",
+//     role: "Admin User",
+//   },
+//   {
+//     id: 2,
+//     name: "Joe Abraham",
+//     email: "Joe.Abraham@joeabraham.com",
+//     phone: "123-456-7890",
+//     role: "Admin User",
+//   },
+// ];
 
-const UserTable = () => {
-  const [page] = useState(0);
+// type UserTableProps = {
+//   assignedData : 
+// }
+
+const UserTable = ({ assignedData }: UserTableProps) => {
+  // const [page] = useState(0);
   const rowsPerPage = 2;
 
-  const paginatedUsers = tableData.slice(
-    page * rowsPerPage,
-    (page + 1) * rowsPerPage
-  );
+  // const paginatedUsers = assignedData.slice(
+  //   page * rowsPerPage,
+  //   (page + 1) * rowsPerPage
+  // );
 
   return (
     <div className="overflow-x-auto">
@@ -62,7 +66,7 @@ const UserTable = () => {
           </tr>
         </thead>
         <tbody>
-          {paginatedUsers.map((user) => (
+          {assignedData.map((user) => (
             <tr key={user.id} className="border-b">
               <td className="p-3">
                 <input
@@ -70,9 +74,9 @@ const UserTable = () => {
                   className="form-checkbox accent-orange-400"
                 />
               </td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>{user.phone}</td>
+              <td>{user.user}</td>
+              <td>Joe.Abraham@joeabraham.com</td>
+              <td>123-456-7890</td>
               <td>{user.role}</td>
               <td>
                 <Image
@@ -96,7 +100,7 @@ const UserTable = () => {
           <Image src={"/icons/_caret-down.svg"} alt="" width={10} height={10} />
         </div>
         <p className="text-[#000000] text-[14px] font-normal ml-[30px]">
-          {Math.ceil(tableData.length / rowsPerPage)}-1 of 2
+          {Math.ceil(assignedData.length / rowsPerPage)}-1 of 2
         </p>
         <div className="flex items-center gap-3">
           <p className="text-orange-500 font-semibold text-[25px]">{"<"}</p>
